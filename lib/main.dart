@@ -48,47 +48,40 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+        leading: Icon(Icons.add_circle,color: Colors.amber,),
+
       ),
-      body: Container(
-        color: Colors.white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: 100,
-              width: 100,
-              margin: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: const Center(
-                child: Text(
-                  'hello mousa',
-                  style: TextStyle(color: Colors.white, fontSize: 12),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+      body: Stack(
+        children: [
+          // Make the background image as the bottom layer
+          Positioned.fill(
+            child: Image.asset(
+              'assets/images/bg.jpeg',
+              fit: BoxFit.cover,
+              
             ),
-            Container(
-              height: 100,
-              width: 100,
-              margin: const EdgeInsets.all(20.0),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: const Center(
-                child: Text(
-                  'ola mousa',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 12),
-                ),
-              ),
+          ),
+          // The content widgets on top of background image
+          Container(
+            color: Colors.white,
+            child: ListTile(
+              title: Text('Hello World', style: TextStyle(color: Colors.green , fontSize: 24, fontWeight: FontWeight.bold)),
+              subtitle: Text('Hello World', style: TextStyle(color: Colors.green , fontSize: 16, fontWeight: FontWeight.normal)),
+              leading: Icon(Icons.add_circle, color: Colors.amber),
+              trailing: Icon(Icons.add_box, color: Colors.amber),
+              onTap: () {
+                print('Hello World');
+              },
             ),
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 200,
+            child: Center(
+              child: Text('Hello World',
+                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
