@@ -4,41 +4,53 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          brightness: Brightness.light,
+          seedColor: Colors.teal,
+          brightness: Brightness.dark,
         ),
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'FlexStore',
-            style: TextStyle(color: Colors.white),
-          ),
+          title: Text("My App"),
           centerTitle: true,
-          leading: const Icon(Icons.store, color: Colors.white),
-          actions: const [
-            Icon(Icons.search, color: Colors.white),
-            SizedBox(width: 16),
-            Icon(Icons.account_circle, size: 28, color: Colors.white),
+          backgroundColor: Colors.pinkAccent,
+        ),
+        bottomNavigationBar: NavigationBar(
+          destinations: [
+            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(icon: Icon(Icons.details), label: 'Details'),
           ],
-          backgroundColor: Colors.blue,
-          iconTheme: const IconThemeData(color: Colors.white),
+          onDestinationSelected: (int value) {},
         ),
-        body: Center(
-          child: Text('Hello, World!'),
-        ),
+        body: Center(child: Text("My app")),
       ),
-    
     );
+  }
+}
+
+class Home extends StatefulWidget {
+  const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: Text("Home")));
   }
 }
