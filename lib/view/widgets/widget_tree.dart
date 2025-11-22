@@ -17,22 +17,16 @@ class WidgetTree extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.pinkAccent,
         actions: [
-          ValueListenableBuilder(
-            valueListenable: brightnessNotifier,
-            builder: (context, brightness, child) {
-              return IconButton(
-                icon: Icon(
-                  brightness == Brightness.dark
-                      ? Icons.light_mode
-                      : Icons.dark_mode,
-                ),
-                onPressed: () {
-                  brightnessNotifier.value = brightness == Brightness.dark
-                      ? Brightness.light
-                      : Brightness.dark;
-                },
-              );
+          IconButton(
+            onPressed: () {
+              brightnessNotifier.value = !brightnessNotifier.value;
             },
+            icon: ValueListenableBuilder(
+              valueListenable: brightnessNotifier,
+              builder: (context, isDarkMode, child) {
+                return Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode);
+              },
+            ),
           ),
         ],
       ),

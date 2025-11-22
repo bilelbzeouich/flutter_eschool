@@ -5,7 +5,15 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Details page"));
+    return Center(
+      child: Text(
+        "Details page",
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.teal,
+        ),
+      ),
+    );
   }
 }
-

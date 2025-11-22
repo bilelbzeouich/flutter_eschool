@@ -15,32 +15,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    super.initState();
-    brightnessNotifier.addListener(_onBrightnessChanged);
-  }
-
-  @override
-  void dispose() {
-    brightnessNotifier.removeListener(_onBrightnessChanged);
-    super.dispose();
-  }
-
-  void _onBrightnessChanged() {
-    setState(() {});
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.teal,
-          brightness: brightnessNotifier.value,
-        ), // ColorScheme.fromSeed
-      ), // ThemeData
-      home: WidgetTree(),
-    ); // MaterialApp
+    return ValueListenableBuilder<bool>(
+      valueListenable: brightnessNotifier,
+      builder: (context, isDarkMode, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.teal,
+              brightness: isDarkMode ? Brightness.dark : Brightness.light,
+            ),
+          ),
+          home: WidgetTree(),
+        );
+      },
+    );
   }
 }
