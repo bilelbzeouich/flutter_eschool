@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'view/widgets/widget_tree.dart';
+import 'view/data/notifiers.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,44 +15,32 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    super.initState();
+    brightnessNotifier.addListener(_onBrightnessChanged);
+  }
+
+  @override
+  void dispose() {
+    brightnessNotifier.removeListener(_onBrightnessChanged);
+    super.dispose();
+  }
+
+  void _onBrightnessChanged() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.teal,
-          brightness: Brightness.dark,
-        ),
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("My App"),
-          centerTitle: true,
-          backgroundColor: Colors.pinkAccent,
-        ),
-        bottomNavigationBar: NavigationBar(
-          destinations: [
-            NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Icons.details), label: 'Details'),
-          ],
-          onDestinationSelected: (int value) {},
-        ),
-        body: Center(child: Text("My app")),
-      ),
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-  const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Home")));
+          brightness: brightnessNotifier.value,
+        ), // ColorScheme.fromSeed
+      ), // ThemeData
+      home: WidgetTree(),
+    ); // MaterialApp
   }
 }
