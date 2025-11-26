@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/hero_widget.dart';
+import '../../const/constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -20,17 +21,10 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'mouna banni',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.teal,
-                      ),
-                    ),
+                    Text('mouna banni', style: textStyles.titleStyle),
                     Text(
                       'description of the person',
-                      style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                      style: textStyles.descriptionStyle,
                     ),
                   ],
                 ),
