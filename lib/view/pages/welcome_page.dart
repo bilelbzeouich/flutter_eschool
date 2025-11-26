@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/widget_tree.dart';
+import '../widgets/hero_widget.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -8,14 +9,11 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100),
-              child: Image.asset("assets/images/bg.jpeg"),
-            ),
+            HeroWidget(),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
