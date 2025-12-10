@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../data/notifiers.dart';
 import 'welcome_page.dart';
 
@@ -12,6 +14,7 @@ class DetailsPage extends StatelessWidget {
         title: const Text('Logout'),
         leading: const Icon(Icons.logout),
         onTap: () {
+          FirebaseAuth.instance.signOut();
           selectedIndexNotifier.value = 0;
           Navigator.pushReplacement(
             context,
